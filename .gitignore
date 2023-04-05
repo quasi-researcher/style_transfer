@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+/flask_app/pic/
+/model_server/logs/
+/model_server/nst.mar
+/model_server/vgg19.pth

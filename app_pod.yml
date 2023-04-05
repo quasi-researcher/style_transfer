@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: application-pod
+spec:
+  containers:
+    - name: flask-app
+      image: flask_server:latest
+      imagePullPolicy: IfNotPresent
+    - name: model-server
+      image: model_server:latest
+      imagePullPolicy: IfNotPresent
+  restartPolicy: Never

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Flask app backed by TorchServe</title>
+    <style>
+        body {
+            background: linear-gradient(60deg, #e4ddf4 0%, #e4ddf4 45%, #fffbf0 45%, #fffbf0 100%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 15%;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        button {
+            cursor: pointer;
+            background-color: #943d24;
+            color: white;
+            margin-top: 50px;
+            border-radius: 4px;
+            border: 2px solid black;
+            border-color: #2d2d2d;
+            font-size: 15px;
+            padding: 5px
+        }
+        button:hover {
+            background-color: #ef9273
+        }
+        #block_container {
+            display: flex;
+            justify-content: left;
+        }
+        .two-column-div {
+            display: grid;
+            grid-template-columns: 70% 30%;
+
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js_src.js') }}"></script>
+</head>
+
+<body>
+<h1> Flask app backed by TorchServe </h1>
+<p> This is a toy example of a Flask app that is supposed to query an ML model served with TorchServe framework</p>
+<div class="two-column-div">
+    <div>
+        <form action="ping" method="get">
+            <button type="submit" value="ping">Ping TorchServe model server</button>
+        </form>
+        <p> Status of Torchserve: {{torch_status}} </p>
+        <div id="block_container">
+            <div>
+                <form action="" method="" name="input_form" style="margin-top: 50px">
+                    <label for="selected_c_image" style="margin-top: 100px">Select content image:</label>
+                    <input type="file" id="selected_c_image" name="selected_content" oninput="content_img.src=window.URL.createObjectURL(this.files[0])"><br>
+                    <label for="selected_s_image" style="margin-top: 100px">Select style image:</label>
+                    <input type="file" id="selected_s_image" name="selected_style" oninput="style_img.src=window.URL.createObjectURL(this.files[0])">
+                </form>
+            </div>
+            <div>
+                <button type="button" value="ping_button" onclick="update_label()">Transfer style</button>
+            </div>
+        </div>
+        <table>
+            <tr height="10px">
+                <td>
+                    <p align="center" style="font-size: 20px; font-weight: bold; color: #2d2d2d"> Content: </p><br>
+                </td>
+                <td>
+                    <p align="center"  style="font-size: 20px; font-weight: bold; color: #2d2d2d"> Style: </p><br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img id="content_img" width="128" height="128">
+                </td>
+                <td>
+                    <img id="style_img" width="128" height="128">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p  style="margin-top: 50px; font-size: 20px; font-weight: bold; color: #2d2d2d"> Generated image: </p>
+                </td>
+                <td>
+                    <img id="out_img">
+                    <p id="file_missed" style="visibility: hidden">Please, select the images</p>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+    <div>
+        <p style="margin-top: 100px; color: #cebff2; text-align: justify; line-height: 1.7; font-size: 20px; font-weight: bold; ">This single page application shows an example of a user-facing app with a functionality
+        to invoke an ML model. The model is not loaded in memory and served by Flask. Instead, the model is served via the TorchServe framework. Such pattern
+        decouples a business logic in the app and the ML part. Decoupling offers lots of benefits including an opportunity to manage the ML part independently
+        (update or replace the model, load balancing etc.). <br> This toy example allows to check the status of the model server (healthy, partially healthy,
+        unhealthy), upload the content and style images and get the generated image with applied style. </p>
+
+    </div>
+</div>
+</body>
+
+</html>
