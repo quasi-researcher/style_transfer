@@ -40,20 +40,14 @@
 <p> This is a toy example of a Flask app that is supposed to query an ML model served with TorchServe framework</p>
 <div class="two-column-div">
     <div style="break-inside: avoid;">
-        <form action="ping_model_server" method="get">
-            <button type="submit" value="ping">Ping TorchServe model server</button>
-        </form>
-        <p> Status of Torchserve: {{torch_status}} </p>
-        <form action="predictions/fmnist" method="post" name="input_form">
-            <label for="selected_image">Select an image:</label>
-            <input type="file" id="selected_image" name="selected_image">
-            <button type="submit" value="prediction">Get predicted label</button>
-        </form>
         <p style="margin-top: 50px; font-size: 20px; font-weight: bold; color: #2d2d2d"> Predicted label: <span id="predicted_label" name="predicted_label">{{predicted_label}} </span></p>
+        <form action="back" method="get" name="back">
+            <button type="submit" value="prediction">Back to main page</button>
+        </form>
     </div>
 
     <div>
-        <p style="margin-top: 100px; color: #cebff2; text-align: justify">This single page application shows an example of a user-facing app with a functionality
+        <p style="margin-top: 100px; color: #cebff2; text-align: justify; line-height: 1.7; font-size: 15px; font-weight: bold;">This single page application shows an example of a user-facing app with a functionality
         to invoke an ML model. The model is not loaded in memory and served by Flask. Instead, the model is served via the TorchServe framework. Such pattern
         decouples a business logic in the app and the serving part. Decoupling offers lots of benefits including an opportunity to manage the ML part independently
         (update or replace the model, load balancing etc.). <br> This toy example allows to check the status of the model server (healthy, partially healthy,
@@ -62,15 +56,6 @@
     </div>
 </div>
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class=flashes>
-    {% for message in messages %}
-      <p style="color: red; font-weight: bold">{{ message }}</p>
-    {% endfor %}
-    </div>
-  {% endif %}
-{% endwith %}
 </body>
 
 </html>
