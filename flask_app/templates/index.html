@@ -84,9 +84,11 @@
             <tr>
                 <td>
                     <p  style="margin-top: 50px; font-size: 20px; font-weight: bold; color: #2d2d2d"> Generated image: </p>
+
                 </td>
                 <td>
                     <img id="out_img">
+                    <div id="loading"></div>
                     <p id="file_missed" style="visibility: hidden">Please, select the images</p>
                 </td>
             </tr>
@@ -96,7 +98,7 @@
 
     </div>
     <div>
-        <p style="margin-top: 100px; color: #cebff2; text-align: justify; line-height: 1.7; font-size: 20px; font-weight: bold; ">This single page application shows an example of a user-facing app with a functionality
+        <p style="margin-top: 100px; color: #cebff2; text-align: justify; line-height: 1.7; font-size: 15px; font-weight: bold; ">This single page application shows an example of a user-facing app with a functionality
         to invoke an ML model. The model is not loaded in memory and served by Flask. Instead, the model is served via the TorchServe framework. Such pattern
         decouples a business logic in the app and the ML part. Decoupling offers lots of benefits including an opportunity to manage the ML part independently
         (update or replace the model, load balancing etc.). <br> This toy example allows to check the status of the model server (healthy, partially healthy,

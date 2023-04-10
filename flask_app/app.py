@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, json
 import base64
 import requests as req
+from werkzeug.exceptions import HTTPException
 app = Flask(__name__, template_folder='templates')
 app.secret_key = "fake secret key for test purposes"
 

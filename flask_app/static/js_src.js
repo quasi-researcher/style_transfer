@@ -11,6 +11,10 @@ function update_label() {
         processData: false,
         contentType: false,
         data: formData,
+        beforeSend: function() {
+            $('#loading').append("<img id='load' src='static/process.gif' width='128' height='128' />");
+            $("#file_missed").css('visibility','hidden');
+        },
         success: function(data) {
                 if (!data['error']) {
                     $("#file_missed").css('visibility','hidden');
@@ -20,6 +24,7 @@ function update_label() {
 
                         $("#file_missed").css('visibility','visible');
                     }
+                $('#load').remove();
 
             },
         error: function(error) {
