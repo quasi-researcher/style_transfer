@@ -93,15 +93,6 @@ class VGG19(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
         )
-        self.classifier = nn.Sequential(
-            nn.Linear(25088, 4096, bias=True),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.5, inplace=False),
-            nn.Linear(4096, 4096, bias=True),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.5, inplace=False),
-            nn.Linear(4096, 1000, bias=True),
-        )
 
     def forward(self, x: torch.Tensor):
         x = self.features(x)
