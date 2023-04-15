@@ -125,8 +125,8 @@ def run_style_transfer(cnn, content_img, style_img, input_img, num_steps=300,
                        style_weight=1000000, content_weight=1):
     """Run the style transfer."""
     print('Building the style transfer model..')
-    cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406])
-    cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225])
+    normalization_mean = torch.tensor([0.485, 0.456, 0.406])
+    normalization_std = torch.tensor([0.229, 0.224, 0.225])
 
     model, style_losses, content_losses = get_style_model_and_losses(cnn,
         normalization_mean, normalization_std, style_img, content_img)
