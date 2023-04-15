@@ -68,10 +68,7 @@ class ModelHandler(BaseHandler):
         content_img, style_img = data.split(1, dim=0)
         input_img = content_img.clone()
 
-        cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406])
-        cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225])
-        out_image = run_style_transfer(self.model.features, cnn_normalization_mean, cnn_normalization_std,
-                                       content_img, style_img, input_img)
+        out_image = run_style_transfer(self.model.features, content_img, style_img, input_img)
         return out_image
 
     def postprocess(self, data):

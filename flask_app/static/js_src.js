@@ -1,4 +1,4 @@
-function update_label() {
+function get_image() {
     var out_img = document.getElementById('out_img');
     const image_content = document.getElementById('selected_c_image').files[0];
     const image_style = document.getElementById('selected_s_image').files[0];

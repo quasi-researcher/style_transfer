@@ -19,7 +19,7 @@ def ping_server():
 
 
 @app.route('/generate', methods=['POST'])
-def get_prediction():
+def generate_image():
     if request.files:
         content_img = request.files['content'].read()
         style_img = request.files['style'].read()
